@@ -23,7 +23,8 @@ def read_csv(fname, delimiter=';', encoding='utf-8'):
 
 
 def main():
-    pass
+    print(read_csv('vocab.csv'))
 
 if __name__ == '__main__':
     main()
+    
