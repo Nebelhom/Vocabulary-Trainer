@@ -10,7 +10,8 @@
 
 import csv
 
-def read_csv(fname, delimiter=';', encoding='utf-8'):
+
+def read_csv(fname='vocab.csv', delimiter=';', encoding='utf-8'):
     """Reads in vocabulary from custom csv file and returns as list"""
 
     vocab = []
@@ -23,7 +24,7 @@ def read_csv(fname, delimiter=';', encoding='utf-8'):
 
 
 def main():
-    print(read_csv('vocab.csv'))
+    print(read_csv())
 
 if __name__ == '__main__':
     main()

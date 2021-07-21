@@ -8,6 +8,10 @@
 <RootWidget>:
     orientation: 'vertical'
 
+    #################
+    ## Interaction ##
+    #################
+
     Label:
         text: 'Vocabulary Trainer'
 
@@ -20,13 +24,13 @@
         #     * Allow to check for Input (at a later stage)
 
         Label:
-            text: 'Placeholder - Language 1 - populated by csv file'
+            text: root.lang1head
 
         TextInput:
             disabled: True
 
         Label:
-            text: 'Placeholder - Language 2 - populated by csv file'
+            text: root.lang2head
 
         TextInput:
             disabled: True
@@ -37,9 +41,15 @@
 
             Button:
                 text: 'Next'
+                on_press: print(root.vocab)
 
             Button:
                 text: 'Show'
+                on_press: print(root.headers)
+
+    ##############
+    ## SETTINGS ##
+    ##############
 
     Label:
         text: 'Settings'
@@ -60,13 +70,13 @@
             orientation: 'horizontal'
 
             Label:
-                text: 'Lang1'
+                text: root.lang1head
 
             Button:
                 text: '->'
 
             Label:
-                text: 'Lang2'
+                text: root.lang1head
 
 
         Label:
@@ -109,24 +119,10 @@
         Label:
             text: 'Lektion' # Populate from CSV or grey out if not available
 
-        SpinBox:
+        Spinner:
             id: td_spin
+            text: 'All'
+            values: root.lessons
 
-<SpinBox>:
-    orientation: 'horizontal'
-    # ObjectProperty in py file
-    # Needed to access PosIntInput from <Menu>
-    output: pii
-    PosIntInput:
-        id: pii
-        text: root.text_value
     Button:
-        text: '+'
-        on_press: root.plus()
-    Button:
-        text: '-'
-        on_press: root.minus()
-
-<PosIntInput>:
-
-
+        text: 'Quit'
