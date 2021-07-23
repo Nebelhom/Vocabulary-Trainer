@@ -27,12 +27,14 @@
             text: root.lang1head
 
         TextInput:
+            id: txt_lang1
             disabled: True
 
         Label:
             text: root.lang2head
 
         TextInput:
+            id: txt_lang2
             disabled: True
 
         BoxLayout:
@@ -40,12 +42,15 @@
             orientation: 'horizontal'
 
             Button:
-                text: 'Next'
-                on_press: print(root.vocab)
+                id: btn_next
+                text: 'Start'
+                on_press: root.test_vocab()
 
             Button:
+                id: btn_show
                 text: 'Show'
-                on_press: print(root.headers)
+                on_press: root.show_answer()
+                disabled: True
 
     ##############
     ## SETTINGS ##
@@ -58,7 +63,7 @@
         orientation: 'vertical'
 
         Label:
-            text: 'Sprachenrichtung'
+            text: 'Language Direction'
 
         BoxLayout:
             # Language Direction: German -> Russian or German <- Russian
@@ -73,56 +78,32 @@
                 text: root.lang1head
 
             Button:
+                id: btn_langdir
                 text: '->'
+                on_press: root.switch_langdir()
 
             Label:
                 text: root.lang1head
 
 
         Label:
-            text: 'Wortart'
+            text: 'Word Type'
 
-        BoxLayout:
-            orientation: 'horizontal'
-
-            ToggleButton:
-                # populate from csv file
-                # grey out if not available in CSV file
-                text: 'Alle'
-                group: 'Wortart' # Populate from CSV heading
-                state: 'down'
-
-            ToggleButton:
-                # populate from csv file
-                # grey out if not available in CSV file
-                text: 'Nomen'
-                group: 'Wortart' # Populate from CSV heading
-
-            ToggleButton:
-                # populate from csv file
-                # grey out if not available in CSV file
-                text: 'Adjektiv'
-                group: 'Wortart' # Populate from CSV heading
-
-            ToggleButton:
-                # populate from csv file
-                # grey out if not available in CSV file
-                text: 'Verb'
-                group: 'Wortart' # Populate from CSV heading
-
-            ToggleButton:
-                # populate from csv file
-                # grey out if not available in CSV file
-                text: 'Andere'
-                group: 'Wortart' # Populate from CSV heading
+        Spinner:
+            id: td_wordtype
+            text: 'All'
+            values: root.wordtypes
+            on_text: root.create_vocablist()
 
         Label:
-            text: 'Lektion' # Populate from CSV or grey out if not available
+            text: 'Unit' # Populate from CSV or grey out if not available
 
         Spinner:
             id: td_spin
             text: 'All'
             values: root.lessons
+            on_text: root.create_vocablist()
 
     Button:
         text: 'Quit'
+        on_press: root.quit_app()
