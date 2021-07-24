@@ -1,2 +1,5 @@
 vocab.csv
 .my-credentials
+buildozer.spec
+.buildozer/
+bin/
